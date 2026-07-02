@@ -470,8 +470,8 @@ class PaintArea(QWidget):
         qp.setPen(QtCore.Qt.red)
         size = self.size()        
         #qp.drawRect(60, 60, 100, 100)
-        orgin_X = size.width()/2.0
-        orgin_Y = size.height()-100
+        orgin_X = int(size.width()/2.0)
+        orgin_Y = int(size.height()-100)
         qp.drawLine(0, orgin_Y, size.width(),orgin_Y )
         qp.drawLine(orgin_X, 0, orgin_X,size.height())
         #print time.ctime(),"refrash....."
