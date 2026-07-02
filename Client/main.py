@@ -25,6 +25,7 @@ import threading
 import math
 #import copy
 from CloseThreading import *
+from PyQt5.QtWebEngineWidgets import QWebEngineSettings
 
 class MainWindow(QMainWindow, Ui_MainWindow):
     tcp = TCPClient()
@@ -50,9 +51,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         #self.webView.setUrl(QtCore.QUrl("file:/html/car_photo.html"))
         photo_Path= os.getcwd()+'/html/car_photo.html'
         self.webView.load(QtCore.QUrl.fromUserInput(photo_Path))
-        #self.webView.page().settings().setAttribute(QtWebEngineWidgets.QWebEngineSettings.ShowScrollBars, False) 
-        self.webView.page().mainFrame().setScrollBarPolicy(Qt.Horizontal, Qt.ScrollBarAlwaysOff)
-        self.webView.page().mainFrame().setScrollBarPolicy(Qt.Vertical, Qt.ScrollBarAlwaysOff) 
+        self.webView.settings().setAttribute(QWebEngineSettings.ShowScrollBars, False)
+        self.webView.loadFinished.connect(lambda: self.webView.page().runJavaScript("""
+            document.body.style.overflowX = 'hidden';
+            document.documentElement.style.overflowX = 'hidden';
+        """))
         try :            
             file_Config = open("Config.txt", "r")
             self.default_Server_IP = file_Config.read()
