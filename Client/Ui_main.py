@@ -233,7 +233,8 @@ class Ui_MainWindow(object):
         font.setFamily("Arial")
         self.label_IP_Addr.setFont(font)
         self.label_IP_Addr.setObjectName("label_IP_Addr")
-        self.webView = QtWebKitWidgets.QWebView(self.centralWidget)
+        #self.webView = QtWebKitWidgets.QWebView(self.centralWidget)
+        self.webView = QWebEngineView(self.centralWidget)
         self.webView.setEnabled(True)
         self.webView.setGeometry(QtCore.QRect(10, 10, 400, 300))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
@@ -527,6 +528,7 @@ class Ui_MainWindow(object):
         self.btn_Home.setText(_translate("MainWindow", "HOME"))
         self.btn_Mode.setText(_translate("MainWindow", "VIDEO"))
         self.label_Mode.setText(_translate("MainWindow", "MODE"))
-from PyQt5 import QtWebKitWidgets
+#from PyQt5 import QtWebKitWidgets
+from PyQt5.QtWebEngineWidgets import QWebEngineView
 
 import fn_logo_rc
